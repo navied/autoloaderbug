@@ -1,0 +1,862 @@
+  [1m[35m (32.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (10.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(796693366426125525)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20190723130103)
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190723130103"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (3.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-24 02:19:55.521556"], ["updated_at", "2019-07-24 02:19:55.521556"]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(796693366426125525)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(796693366426125525)[0m
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDogs (20190723130622)
+  [1m[35m (1.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.1ms)[0m  [1m[35mCREATE TABLE "dogs" ("id" bigserial primary key, "name" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (1.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190723130622"]]
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(796693366426125525)[0m
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(796693366426125525)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateBugConcept (20190724041120)
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "account_concepts" CASCADE[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "account_concepts" ("id" bigserial primary key, "account_id" integer NOT NULL, "concept_id" integer NOT NULL, "score" float, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE  INDEX  "index_account_concepts_on_account_id_and_concept_id" ON "account_concepts"  ("account_id", "concept_id")[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_account_concepts_on_concept_id_and_account_id" ON "account_concepts"  ("concept_id", "account_id")[0m
+  [1m[36mprimary::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190724041120"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(796693366426125525)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(796693366426125525)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(796693366426125525)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (396.1ms)[0m  [1m[35mCREATE DATABASE "test_one" ENCODING = 'utf8'[0m
+  [1m[35m (303.0ms)[0m  [1m[35mCREATE DATABASE "test_two" ENCODING = 'utf8'[0m
+  [1m[35m (286.1ms)[0m  [1m[35mCREATE DATABASE "test_one_two" ENCODING = 'utf8'[0m
+  [1m[35m (284.3ms)[0m  [1m[35mCREATE DATABASE "test_two_two" ENCODING = 'utf8'[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(105689379363729630)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20190723130103)
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190723130103"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAccountConcept (20190724041120)
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "account_concepts" CASCADE[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "account_concepts" ("id" bigserial primary key, "account_id" integer NOT NULL, "concept_id" integer NOT NULL, "score" float, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE  INDEX  "index_account_concepts_on_account_id_and_concept_id" ON "account_concepts"  ("account_id", "concept_id")[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE  INDEX  "index_account_concepts_on_concept_id_and_account_id" ON "account_concepts"  ("concept_id", "account_id")[0m
+  [1m[36mprimary::SchemaMigration Create (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190724041120"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-24 04:13:51.376078"], ["updated_at", "2019-07-24 04:13:51.376078"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(105689379363729630)[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3607617428898439005)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDogs (20190723130622)
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "dogs" ("id" bigserial primary key, "name" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190723130622"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-24 04:13:51.454735"], ["updated_at", "2019-07-24 04:13:51.454735"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3607617428898439005)[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(105689379363729630)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(105689379363729630)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3607617428898439005)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3607617428898439005)[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(105689379363729630)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(105689379363729630)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3607617428898439005)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(3607617428898439005)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(105689379363729630)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(105689379363729630)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3607617428898439005)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(3607617428898439005)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE DATABASE "test_one" ENCODING = 'utf8'[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE DATABASE "test_two" ENCODING = 'utf8'[0m
+  [1m[35m (279.6ms)[0m  [1m[35mCREATE DATABASE "test_one_test" ENCODING = 'utf8'[0m
+  [1m[35m (292.8ms)[0m  [1m[35mCREATE DATABASE "test_two_test" ENCODING = 'utf8'[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE DATABASE "test_one" ENCODING = 'utf8'[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE DATABASE "test_two" ENCODING = 'utf8'[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE DATABASE "test_one_test" ENCODING = 'utf8'[0m
+  [1m[35m (300.6ms)[0m  [1m[35mCREATE DATABASE "test_two_test" ENCODING = 'utf8'[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(105689379363729630)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(105689379363729630)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3607617428898439005)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(3607617428898439005)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(105689379363729630)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(105689379363729630)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3607617428898439005)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(3607617428898439005)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(105689379363729630)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(105689379363729630)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3607617428898439005)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(3607617428898439005)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(105689379363729630)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(105689379363729630)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3607617428898439005)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(3607617428898439005)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(105689379363729630)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(105689379363729630)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3607617428898439005)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(3607617428898439005)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(105689379363729630)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(105689379363729630)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3607617428898439005)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(3607617428898439005)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(105689379363729630)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(105689379363729630)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3607617428898439005)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(3607617428898439005)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (110.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "test_one"[0m
+  [1m[35m (109.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "test_two"[0m
+  [1m[35m (113.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "test_one_test"[0m
+  [1m[35m (110.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "test_two_test"[0m
+  [1m[35m (285.1ms)[0m  [1m[35mCREATE DATABASE "test_one" ENCODING = 'utf8'[0m
+  [1m[35m (290.6ms)[0m  [1m[35mCREATE DATABASE "test_two" ENCODING = 'utf8'[0m
+  [1m[35m (304.4ms)[0m  [1m[35mCREATE DATABASE "test_one_test" ENCODING = 'utf8'[0m
+  [1m[35m (295.4ms)[0m  [1m[35mCREATE DATABASE "test_two_test" ENCODING = 'utf8'[0m
+  [1m[35m (6.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(105689379363729630)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20190723130103)
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190723130103"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAccountConcept (20190724041120)
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "account_concepts" CASCADE[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "account_concepts" ("id" bigserial primary key, "account_id" integer NOT NULL, "concept_id" integer NOT NULL, "score" float, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE  INDEX  "index_account_concepts_on_account_id_and_concept_id" ON "account_concepts"  ("account_id", "concept_id")[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE  INDEX  "index_account_concepts_on_concept_id_and_account_id" ON "account_concepts"  ("concept_id", "account_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190724041120"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-24 04:25:48.774012"], ["updated_at", "2019-07-24 04:25:48.774012"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(105689379363729630)[0m
+  [1m[35m (7.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3607617428898439005)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDogs (20190723130622)
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "dogs" ("id" bigserial primary key, "name" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190723130622"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-24 04:25:48.851914"], ["updated_at", "2019-07-24 04:25:48.851914"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3607617428898439005)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE DATABASE "test_one" ENCODING = 'utf8'[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE DATABASE "test_two" ENCODING = 'utf8'[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE DATABASE "test_one_test" ENCODING = 'utf8'[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE DATABASE "test_two_test" ENCODING = 'utf8'[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(105689379363729630)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(105689379363729630)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3607617428898439005)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(3607617428898439005)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2019-07-24 20:31:20 -0400
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/navied/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/railties-6.0.0.rc2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/navied/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/railties-6.0.0.rc2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 6.4ms | Allocations: 463)
+Completed 200 OK in 16ms (Views: 8.8ms | ActiveRecord: 0.0ms | Allocations: 2631)
+
+
+Started GET "/" for ::1 at 2019-07-24 20:31:22 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/navied/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/railties-6.0.0.rc2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/navied/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/railties-6.0.0.rc2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 6.0ms | Allocations: 194)
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.0ms | Allocations: 845)
+
+
+Started GET "/" for ::1 at 2019-07-24 20:32:04 -0400
+  
+NameError (wrong constant name primary):
+  
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `qualified_const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:664:in `autoloaded?'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block (2 levels) in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:102:in `block in reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `each'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `clear'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:205:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/evented_file_update_checker.rb:97:in `execute'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:232:in `block (3 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:135:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:120:in `class_unload!'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:231:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `instance_exec'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `block in make_lambda'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:201:in `block (2 levels) in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:607:in `block (2 levels) in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `catch'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `block in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:202:in `block in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `block in invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `each'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:134:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:111:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:114:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:73:in `block in run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `tap'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:63:in `run!'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0.rc2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0.rc2) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2019-07-24 20:32:08 -0400
+  
+NameError (wrong constant name primary):
+  
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `qualified_const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:664:in `autoloaded?'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block (2 levels) in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:102:in `block in reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `each'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `clear'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:205:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/evented_file_update_checker.rb:97:in `execute'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:232:in `block (3 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:135:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:120:in `class_unload!'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:231:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `instance_exec'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `block in make_lambda'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:201:in `block (2 levels) in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:607:in `block (2 levels) in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `catch'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `block in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:202:in `block in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `block in invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `each'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:134:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:111:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:114:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:73:in `block in run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `tap'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:63:in `run!'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0.rc2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0.rc2) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2019-07-24 20:32:14 -0400
+  
+NameError (wrong constant name primary):
+  
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `qualified_const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:664:in `autoloaded?'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block (2 levels) in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:102:in `block in reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `each'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `clear'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:205:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/evented_file_update_checker.rb:97:in `execute'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:232:in `block (3 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:135:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:120:in `class_unload!'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:231:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `instance_exec'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `block in make_lambda'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:201:in `block (2 levels) in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:607:in `block (2 levels) in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `catch'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `block in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:202:in `block in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `block in invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `each'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:134:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:111:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:114:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:73:in `block in run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `tap'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:63:in `run!'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0.rc2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0.rc2) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/boop" for ::1 at 2019-07-24 20:32:20 -0400
+  
+NameError (wrong constant name primary):
+  
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `qualified_const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:664:in `autoloaded?'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block (2 levels) in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:102:in `block in reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `each'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `clear'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:205:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/evented_file_update_checker.rb:97:in `execute'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:232:in `block (3 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:135:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:120:in `class_unload!'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:231:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `instance_exec'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `block in make_lambda'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:201:in `block (2 levels) in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:607:in `block (2 levels) in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `catch'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `block in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:202:in `block in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `block in invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `each'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:134:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:111:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:114:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:73:in `block in run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `tap'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:63:in `run!'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0.rc2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0.rc2) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/boop" for ::1 at 2019-07-24 20:32:39 -0400
+  
+NameError (wrong constant name primary):
+  
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `qualified_const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:664:in `autoloaded?'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block (2 levels) in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:102:in `block in reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `each'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `clear'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:205:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/evented_file_update_checker.rb:97:in `execute'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:232:in `block (3 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:135:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:120:in `class_unload!'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:231:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `instance_exec'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `block in make_lambda'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:201:in `block (2 levels) in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:607:in `block (2 levels) in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `catch'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `block in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:202:in `block in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `block in invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `each'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:134:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:111:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:114:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:73:in `block in run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `tap'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:63:in `run!'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0.rc2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0.rc2) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/boop" for ::1 at 2019-07-24 20:32:45 -0400
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BoopController#index as HTML
+  Rendering boop/index.html.erb within layouts/application
+  Rendered boop/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 347)
+Completed 200 OK in 873ms (Views: 864.1ms | ActiveRecord: 0.0ms | Allocations: 1653112)
+
+
+Started GET "/boop" for ::1 at 2019-07-24 20:32:47 -0400
+Processing by BoopController#index as HTML
+  Rendering boop/index.html.erb within layouts/application
+  Rendered boop/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.0ms | Allocations: 4431)
+
+
+Started GET "/boop" for ::1 at 2019-07-24 20:32:52 -0400
+  
+NameError (wrong constant name primary):
+  
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `qualified_const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:664:in `autoloaded?'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block (2 levels) in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:102:in `block in reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `each'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `clear'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:205:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/evented_file_update_checker.rb:97:in `execute'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:232:in `block (3 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:135:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:120:in `class_unload!'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:231:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `instance_exec'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `block in make_lambda'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:201:in `block (2 levels) in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:607:in `block (2 levels) in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `catch'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `block in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:202:in `block in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `block in invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `each'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:134:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:111:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:114:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:73:in `block in run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `tap'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:63:in `run!'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0.rc2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0.rc2) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/boop" for ::1 at 2019-07-24 20:33:49 -0400
+  
+NameError (wrong constant name primary):
+  
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `qualified_const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:664:in `autoloaded?'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block (2 levels) in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:102:in `block in reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `each'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `clear'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:205:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/evented_file_update_checker.rb:97:in `execute'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:232:in `block (3 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:135:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:120:in `class_unload!'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:231:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `instance_exec'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `block in make_lambda'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:201:in `block (2 levels) in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:607:in `block (2 levels) in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `catch'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `block in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:202:in `block in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `block in invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `each'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:134:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:111:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:114:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:73:in `block in run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `tap'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:63:in `run!'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0.rc2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0.rc2) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2019-07-24 20:35:27 -0400
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/navied/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/railties-6.0.0.rc2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/navied/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/railties-6.0.0.rc2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 6.5ms | Allocations: 463)
+Completed 200 OK in 18ms (Views: 9.1ms | ActiveRecord: 0.0ms | Allocations: 2730)
+
+
+Started GET "/" for ::1 at 2019-07-24 20:35:43 -0400
+  
+NameError (wrong constant name primary):
+  
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:426:in `qualified_const_defined?'
+activesupport (6.0.0.rc2) lib/active_support/dependencies.rb:664:in `autoloaded?'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block (2 levels) in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:102:in `block in reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:101:in `reject!'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:29:in `block in clear'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `each'
+activesupport (6.0.0.rc2) lib/active_support/descendants_tracker.rb:25:in `clear'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:205:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/evented_file_update_checker.rb:97:in `execute'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:232:in `block (3 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:135:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:120:in `class_unload!'
+railties (6.0.0.rc2) lib/rails/application/finisher.rb:231:in `block (2 levels) in <module:Finisher>'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `instance_exec'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:429:in `block in make_lambda'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:201:in `block (2 levels) in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:607:in `block (2 levels) in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `catch'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:606:in `block in default_terminator'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:202:in `block in halting'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `block in invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `each'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:514:in `invoke_before'
+activesupport (6.0.0.rc2) lib/active_support/callbacks.rb:134:in `run_callbacks'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:111:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:114:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:73:in `block in run!'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `tap'
+activesupport (6.0.0.rc2) lib/active_support/execution_wrapper.rb:70:in `run!'
+activesupport (6.0.0.rc2) lib/active_support/reloader.rb:63:in `run!'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.0.rc2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.0.rc2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.0.rc2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+actionpack (6.0.0.rc2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.0.7) lib/webpacker/dev_server_proxy.rb:29:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.0.rc2) lib/rails/engine.rb:526:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2019-07-24 20:35:59 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/navied/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/railties-6.0.0.rc2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/navied/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/railties-6.0.0.rc2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 8.0ms | Allocations: 194)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.0ms | Allocations: 954)
+
+
